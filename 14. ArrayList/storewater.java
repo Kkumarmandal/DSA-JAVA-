@@ -1,7 +1,8 @@
-import java.util.ArrayList;
+import java.util.*;
 
+//Brute Force Approach
 public class storewater {
-    public static int storewaterContainer (ArrayList <Integer> height){
+    /*public static int storewaterContainer (ArrayList <Integer> height){
         // Global variable
         int maxWater = 0;
 
@@ -20,7 +21,35 @@ public class storewater {
         return maxWater;
 
 
+    }*/
+
+// Two point Approach
+    public static int storewaterTwoPinter (ArrayList <Integer> height ){
+        int maxwater = 0;
+        int lp = 0;
+        int rp = height.size()-1;
+
+        while (lp < rp) {
+            // Calculate water area
+
+            int ht = Math.min(height.get(lp), height.get(rp));
+            int width = rp - lp;
+            int currentwater = ht * width;
+            maxwater = Math.max(maxwater, currentwater);
+
+            // Update
+
+            if (height.get(lp) < height.get(rp)) {
+                lp++;
+            } else{
+                rp--;
+            }
+            
+        }
+        return maxwater;
     }
+
+    
     
     public static void main(String[] args) {
         ArrayList <Integer> height = new ArrayList<>();
@@ -35,7 +64,11 @@ public class storewater {
         height.add(3);
         height.add(7);
 
-        System.out.println(storewaterContainer(height));
+        //System.out.println(storewaterContainer(height));
+
+        System.out.println(storewaterTwoPinter(height));
+        
+        
 
 
     }
