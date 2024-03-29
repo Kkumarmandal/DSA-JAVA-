@@ -37,7 +37,7 @@ public class pairSum2 {
 
 
     public static void main(String[] args) {
-        // 11, 15, 6, 8, 9, 10;
+        // 11, 15, 6, 8, 9, 10; sorted and roated Array
         
         ArrayList <Integer> list = new ArrayList<>();
         list.add(11);
