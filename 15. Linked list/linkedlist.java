@@ -220,6 +220,7 @@ public class linkedlist {
         }
         return slow; // slow is my midNode
     }
+    
     // Check if LL is Pallindrome
     public boolean checkPalindrome (){
         // base Case
@@ -255,6 +256,55 @@ public class linkedlist {
         }
         return true;
 
+    }
+
+    //Detecting the cycle in LinkedKist
+    public static boolean isCyclye (){
+        Node slow = head;
+        Node fast = head;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (slow == fast) {
+                return true;
+            }            
+        }
+        return false;
+
+    }
+
+    // Remove a cycle in a LinkedList
+    public static void removeCycle (){
+        //Detect cycle
+        Node slow = head;
+        Node fast = head;
+        boolean cycle = false;
+
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+
+            if (fast == slow) {
+                cycle = true;
+                break;                
+            }            
+        }
+        if (cycle == false) {
+            return;
+        }
+        //Find meeting Point
+        slow = head;
+        Node prev = null;
+
+        while (slow != fast) {
+            prev = fast;
+            slow = slow.next;
+            fast = fast.next;            
+        }
+        // Remove Cycle
+        prev.next = null;
     }
 
     
@@ -310,6 +360,25 @@ public class linkedlist {
 
         ll.print();
         System.out.println("LL is Palindrome = " + ll.checkPalindrome());
+
+        //Detecting the cycle in LinkedKist
+        /*head = new Node(1);
+        head.next = new Node(2);
+        head.next.next = new Node(3);
+        head.next.next.next = head;
+        // 1 -> 2 -> 3 -> 1
+        System.out.println(isCyclye());*/
+
+        // Remove a cycle in a LinkedList
+        head = new Node(1);
+        Node temp = new Node(2);
+        head.next = temp;
+        head.next.next = new Node(3);
+        head.next.next.next = temp;
+        System.err.println(isCyclye());
+        removeCycle();
+        System.out.println(isCyclye());
+
 
 
     }
