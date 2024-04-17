@@ -61,6 +61,38 @@ public class DoublyLL {
 
     }
 
+    // Add Last
+    public void addLast (int data){
+        Node newNode = new Node(data);
+        size ++;
+        if (head == null) {
+            head = tail = null;            
+        }
+        tail.next = newNode;
+        newNode.prev = tail;
+        tail = newNode;
+    }
+
+    // Remove Last
+
+    public int removeLast (){
+        if (head == null) {
+            System.out.print("DLL is empty");
+            return Integer.MIN_VALUE;                       
+        }
+        if (size == 1) {
+            int val = head.data;
+            head = tail = null;
+            size --;
+            return val;        
+        }
+        int val = tail.data;
+        tail = tail.prev;
+        tail.next = null;
+        size--;
+        return val;
+    }
+
     public static void main(String[] args) {
 
         DoublyLL dll = new DoublyLL();
@@ -77,6 +109,18 @@ public class DoublyLL {
         dll.removeFirst();
         dll.print();
         System.out.println("Remove first size " + dll.size);
+
+        // Add Last
+        dll.addLast(4);
+        dll.addLast(5);
+        
+        dll.print();
+        System.out.println("Add Last " + dll.size);
+
+        // Remove Last
+        dll.removeLast();
+        dll.print();
+        System.out.println("Remove Last " + dll.size);
 
     }
     
