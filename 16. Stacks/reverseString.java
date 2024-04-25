@@ -12,8 +12,8 @@ public class reverseString {
 
         StringBuilder result = new StringBuilder(""); //intilize with empty 
         while (!s.isEmpty()) {
-            char curr = s.pop(); // chara ko bahar nikalna 
-            result.append(curr); // resul pe store kar dege         
+            char curr = s.pop(); // character ko bahar nikalna 
+            result.append(curr); // result pe store kar dege         
         }
         return result.toString(); // string builder ka datatype alag rehta hai toh .tostring        
 
