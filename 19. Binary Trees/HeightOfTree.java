@@ -62,6 +62,34 @@ public class HeightOfTree {
         //Comparing
         return Math.max(selffDiam, Math.max(leftDiam, rightDiam));
     }
+
+    // Diameter of Node Approach 2
+    static class Info {
+        int diam;
+        int ht;
+
+        public Info (int diam, int ht){
+            this.diam = diam;
+            this.ht = ht;
+        }
+    }
+    public static Info diameter2 (Node root){
+        //base case
+        if (root == null) {
+            return new Info(0, 0);            
+        }
+
+        //left Info
+        Info leftInfo = diameter2(root.left);
+        //right Info
+        Info rightInfo = diameter2(root.right);
+        // Self Info
+        int diam = Math.max(Math.max(leftInfo.diam, rightInfo.diam), leftInfo.ht + rightInfo.ht + 1);
+
+        int ht = Math.max(leftInfo.ht, rightInfo.ht) + 1;
+
+        return new Info(diam, ht);
+    }
     
     public static void main(String[] args) {
 
@@ -89,6 +117,8 @@ public class HeightOfTree {
         System.out.println("Sum of Node = " + sumOfNode(root));    //28
 
          System.out.println("Diameter of node = " + diameter(root));    //5
-        
+
+         System.out.println(diameter2(root).diam);    //5
+         System.out.println(diameter2(root).ht);    //3          
     }
 }
