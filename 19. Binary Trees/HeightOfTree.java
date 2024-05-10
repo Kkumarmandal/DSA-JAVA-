@@ -90,6 +90,39 @@ public class HeightOfTree {
 
         return new Info(diam, ht);
     }
+
+        // SubTree of another Tree
+
+    public static boolean isIndentical (Node node, Node subroot){
+        if (node == null && subroot == null) {
+            return true;            
+        }else if (node == null || subroot == null || node.data != subroot.data) {
+            return false;            
+        }
+
+        if (! isIndentical(node.left, subroot.left)) {
+            return false;            
+        }
+        if (! isIndentical(node.right, subroot.right)) {
+            return false;            
+        }
+        return true;
+    }
+
+    public static boolean isSubtree (Node root, Node subroot){
+        // Base Case
+        if (root == null) {
+            return false;            
+        }
+
+        if (root.data == subroot.data) {
+            if (isIndentical (root, subroot)) {
+                return true;                
+            }            
+        }
+
+        return isSubtree(root.left,subroot) || isSubtree(root.right, subroot);
+    }
     
     public static void main(String[] args) {
 
@@ -119,6 +152,19 @@ public class HeightOfTree {
          System.out.println("Diameter of node = " + diameter(root));    //5
 
          System.out.println(diameter2(root).diam);    //5
-         System.out.println(diameter2(root).ht);    //3          
+         System.out.println(diameter2(root).ht);    //3    
+
+               // New node
+            /*
+                  2
+                /  \
+               4    5
+             */
+            Node subroot = new Node(2);
+            subroot.left = new Node(4);
+            subroot.right = new Node(5);
+
+            System.out.println(isSubtree(root, subroot));
+    }
     }
 }
