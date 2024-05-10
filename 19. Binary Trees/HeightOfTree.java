@@ -41,6 +41,27 @@ public class HeightOfTree {
         int rightSum = sumOfNode(root.right);
         return leftSum + rightSum + root.data;
     }
+
+    // Diameter of Root Approach 1
+    public static int diameter (Node root){
+        //base case
+        if (root == null) {
+            return 0;            
+        }
+
+        //calulate left diameter, left height
+        int leftDiam = diameter(root.left);
+        int leftHt = height(root.left);
+
+        //Calate right diameter, right height
+        int rightDiam = diameter(root.right);
+        int rightHt = height(root.right);
+
+        int selffDiam = leftHt + rightHt + 1;
+
+        //Comparing
+        return Math.max(selffDiam, Math.max(leftDiam, rightDiam));
+    }
     
     public static void main(String[] args) {
 
@@ -66,6 +87,8 @@ public class HeightOfTree {
         System.out.println("Count Of Node = " + count(root));    //7
 
         System.out.println("Sum of Node = " + sumOfNode(root));    //28
+
+         System.out.println("Diameter of node = " + diameter(root));    //5
         
     }
 }
