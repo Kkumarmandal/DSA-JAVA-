@@ -123,6 +123,21 @@ public class HeightOfTree {
 
         return isSubtree(root.left,subroot) || isSubtree(root.right, subroot);
     }
+
+     // Kth Level
+    public static void kLevel (Node root, int level, int k){
+        if (root == null) {
+            return;            
+        }
+
+        if (level == k) {
+            System.out.print(root.data + " ");
+            return;            
+        }
+
+        kLevel(root.left, level + 1, k); // Left SubTree
+        kLevel(root.right , level + 1, k); // Right SubTee
+    }
     
     public static void main(String[] args) {
 
@@ -165,6 +180,8 @@ public class HeightOfTree {
             subroot.right = new Node(5);
 
             System.out.println(isSubtree(root, subroot));
-    }
+    
+            int k = 3;
+            kLevel(root, 1, k);
     }
 }
