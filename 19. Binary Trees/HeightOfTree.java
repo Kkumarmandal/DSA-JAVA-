@@ -184,6 +184,31 @@ public class HeightOfTree {
         Node lca = path1.get(i - 1);
         return lca;
     }
+
+    //Last Common Ancestor -> Aproach 2
+    public static Node lca2 (Node root, int n1, int n2){
+        if (root == null) {
+            return null;            
+        }
+        //compare with root
+        if (root.data == n1 || root.data == n2) {
+            return root;            
+        }
+        //compare with left Subtree
+        Node leftLca = lca2(root.left, n1, n2);
+        Node rightLca = lca2(root.right, n1, n2);
+
+        //LeftLca = valid   rightLca = null
+        if (rightLca == null) {
+            return leftLca;            
+        }
+        //LeftLca = null    rightLca = valid
+        if (leftLca == null) {
+            return rightLca;            
+        }
+        //ek subtree me n1 hai and dusara me n2 hai
+        return root;
+    }
     
     public static void main(String[] args) {
 
@@ -233,5 +258,9 @@ public class HeightOfTree {
         //Last common Ancestor  -> Apporach 1
             int n1 = 4 , n2 = 6;
             System.out.println("Last common Ancestor " + lca(root, n1, n2).data); // 1
+
+        // Last common Ancestor -> Approach 2
+            int n1 = 5, n2 = 7;
+            System.out.println("Last common Ancestor " + lca2(root, n1, n2).data); // 1
     }
 }
