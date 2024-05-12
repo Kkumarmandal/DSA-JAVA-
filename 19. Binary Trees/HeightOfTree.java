@@ -138,6 +138,52 @@ public class HeightOfTree {
         kLevel(root.left, level + 1, k); // Left SubTree
         kLevel(root.right , level + 1, k); // Right SubTee
     }
+
+    // Lowest Common Ancestor -> Apporach 1
+
+    public static boolean getPath (Node root, int n, ArrayList <Node> path){
+        //base case
+        if (root == null) {
+            return false;            
+        }
+
+        path.add(root);
+        //compare with root
+        if (root.data == n) {
+            return true;            
+        }
+        //Compare with subtree
+        boolean foundLeft = getPath(root.left, n, path);
+        boolean foundRight = getPath(root.right, n, path);
+
+        if (foundLeft || foundRight) {
+            return true;            
+        }
+
+        //If left Subtree nahi mila and right subtree me nahi mila change the root
+        path.remove(path.size() - 1);
+        return false;
+    }
+
+    public static Node lca (Node root, int n1, int n2){
+        //Path Find Out
+        ArrayList <Node> path1 = new ArrayList<>();
+        ArrayList <Node> path2 = new ArrayList<>();
+
+        getPath (root, n1, path1);
+        getPath (root, n2, path2);
+
+        //Last Common Ancestor
+        int i =0;
+        for (; i < path1.size() && i < path2.size(); i++){
+            if (path1.get(i) != path2.get(i)) {
+                break;                
+            }
+        }
+        //Last equal node -> i-1
+        Node lca = path1.get(i - 1);
+        return lca;
+    }
     
     public static void main(String[] args) {
 
@@ -183,5 +229,9 @@ public class HeightOfTree {
     
             int k = 3;
             kLevel(root, 1, k);
+
+        //Last common Ancestor  -> Apporach 1
+            int n1 = 4 , n2 = 6;
+            System.out.println("Last common Ancestor " + lca(root, n1, n2).data); // 1
     }
 }
