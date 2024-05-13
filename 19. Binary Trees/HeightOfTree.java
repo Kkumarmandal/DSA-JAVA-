@@ -239,6 +239,30 @@ public class HeightOfTree {
 
         return dist1 + dist2;
     }
+
+    // Kth Ancestor of node
+    public static int kAncestor (Node root, int n, int k){
+        //base case
+        if (root == null) {
+            return -1;            
+        }
+
+        if (root.data == n) {
+            return 0;            
+        }
+
+        int leftDist = kAncestor(root.left, n, k);
+        int rightDist = kAncestor(root.right, n, k);
+
+        if (leftDist == -1 && rightDist == -1) {
+            return -1;            
+        }
+        int max = Math.max(leftDist, rightDist);
+        if (max + 1 == k) {
+            System.out.println(root.data);            
+        }
+        return max+1;
+    }
     
     public static void main(String[] args) {
 
@@ -296,5 +320,9 @@ public class HeightOfTree {
         // Min Dist Between two node
             int n1 = 4, n2 = 6;
             System.out.println(minDist(root, n1, n2)); // 4
+
+        // Kth Ancestor of node
+            int n = 5, k = 2;
+            kAncestor(root, n, k); //1
     }
 }
