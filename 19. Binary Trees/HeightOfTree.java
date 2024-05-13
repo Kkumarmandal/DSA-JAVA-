@@ -293,6 +293,32 @@ public class HeightOfTree {
         preOrder(root.left);
         preOrder(root.right);
     }
+
+    //Check if a binary tree is Univalued 
+    public static boolean isUnivalTree (Node root){
+        if (root == null) {
+            return true;            
+        }
+
+        if (root.left != null && root.data != root.left.data) {
+            return false;            
+        }
+        if (root.right != null && root.data != root.right.data) {
+            return false;            
+        }
+
+        boolean is_left_subtree_univalue = isUnivalTree(root.left);
+        if (is_left_subtree_univalue == false) {
+            return false;            
+        }
+
+        boolean is_right_subtee_univalue = isUnivalTree(root.right);
+        if (is_right_subtee_univalue == false) {
+            return false;            
+        }
+
+        return true;
+    }
     
     public static void main(String[] args) {
 
@@ -358,5 +384,18 @@ public class HeightOfTree {
         //Transform to Sum Tree
             transform(root);
             preOrder(root);    // 27 9 0 0 13 0 0
+
+        //Univalue Tree
+             // New node
+            /*
+                  2
+                /  \
+               2    2
+             */
+            Node subroot1 = new Node(2);
+            subroot1.left = new Node(2);
+            subroot1.right = new Node(2);
+
+            System.out.println(  isUnivalTree(subroot1));
     }
 }
