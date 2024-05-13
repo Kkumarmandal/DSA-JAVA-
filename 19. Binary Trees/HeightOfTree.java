@@ -263,6 +263,36 @@ public class HeightOfTree {
         }
         return max+1;
     }
+
+    // Tramsform to Sub Tree
+    public static int transform (Node root){
+        if (root == null) {
+            return 0;            
+        }
+
+        //left child trnsform
+        int leftChild = transform(root.left);
+        // right child transform
+        int rightChild = transform(root.right);
+
+        int data = root.data;
+
+        int newLeft = root.left == null ? 0 : root.left.data;
+        int newRight = root.right == null ? 0 : root.right.data;
+
+        root.data = newLeft + leftChild + newRight + rightChild;
+
+        return data;
+    }
+    
+    public static void preOrder (Node root){
+        if (root == null) {
+            return ;
+        }
+        System.err.print(root.data + " ");
+        preOrder(root.left);
+        preOrder(root.right);
+    }
     
     public static void main(String[] args) {
 
@@ -324,5 +354,9 @@ public class HeightOfTree {
         // Kth Ancestor of node
             int n = 5, k = 2;
             kAncestor(root, n, k); //1
+
+        //Transform to Sum Tree
+            transform(root);
+            preOrder(root);    // 27 9 0 0 13 0 0
     }
 }
