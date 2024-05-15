@@ -39,6 +39,24 @@ public class BuiltBTS {
         inorder(root.right);
     }
 
+    //Search 
+    public static boolean search (Node root, int key){
+        if (root == null) {
+            return false;
+        }
+        //root == key
+        if (root.data == key) {
+            return true;
+        }
+        //left subtree
+        if (root.data > key) {
+            return search(root.left, key);
+        } else {
+            //right subtree
+            return search(root.right, key);
+        }
+    }
+
     public static void main(String[] args) {
         int values [] = {5, 1, 3, 4, 2, 7};
         Node root = null;
@@ -49,6 +67,12 @@ public class BuiltBTS {
         }
         inorder(root);
         System.out.println();
+
+        if (search(root, 6)) {
+            System.out.println("Found");            
+        } else {
+            System.out.println("Not found");
+        }
 
     }
 }
