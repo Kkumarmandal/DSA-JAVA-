@@ -319,6 +319,24 @@ public class HeightOfTree {
 
         return true;
     }
+
+    //Delete Node leaf
+    public static Node deleteLeaves (Node root, int x){
+        //tree is empty
+        if (root == null) {
+            return null;
+        }
+        //delete leaf node in left subtree
+        root.left = deleteLeaves(root.left, x);
+        //delete leaf node in right subtree
+        root.right = deleteLeaves(root.right, x);
+
+        //if leaf node and value equal to given val (X), remove that node from tree
+        if (root.data == x && root.left == null && root.right == null) {
+            return null;
+        }
+        return root;
+    }
     
     public static void main(String[] args) {
 
@@ -397,5 +415,11 @@ public class HeightOfTree {
             subroot1.right = new Node(2);
 
             System.out.println(  isUnivalTree(subroot1));
+
+        // Delete leaf node
+            preOrder(root); //1 2 4 5 3 6 7
+            System.out.println();
+            deleteLeaves(root, 5);
+            preOrder(root); // 1 2 4 3 6 7
     }
 }
