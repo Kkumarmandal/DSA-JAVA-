@@ -12,6 +12,31 @@ public class HashMapOperaation {
         //Print
         System.out.println(hm);
 
+        //GET -> O(1)
+        int population = hm.get("China"); //-> 100
+        System.out.println(population);
+
+        System.out.println(hm.get("Indonesia")); //-> null
+
+        // containsKey -> True or False 
+        System.out.println(hm.containsKey("India")); //-> true
+
+        System.out.println(hm.containsKey("Indonesia")); //-> false
+
+        //Remove -> O(1) 
+        System.out.println(hm.remove("China"));
+        System.out.println(hm);
+
+        // Size
+        System.out.println("Size "+hm.size()); //Size 2
+
+        //isEmpty
+        System.out.println("isEmpty = " + hm.isEmpty()); //isEmpty = false
+
+        //clear
+        hm.clear();
+        System.out.println("isEmpty = " + hm.isEmpty()); //isEmpty = true
+
 
         
     }
