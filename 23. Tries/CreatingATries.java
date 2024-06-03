@@ -7,7 +7,7 @@ public class CreatingATries {
 
         Node (){
             for (int i= 0; i < 26; i++){
-                children [] = null;
+                children [i] = null;
             }
         }
     }
@@ -26,6 +26,22 @@ public class CreatingATries {
         }
         curr.eow = true; // bydefault false 
     }
+
+     // search in tries
+    public static boolean search (String key){
+        Node curr = root;
+        //levelwise iterate
+        for (int level = 0; level < key.length(); level++){
+            int idx = key.charAt(level) - 'a';
+
+            if (curr.children [idx] == null) {
+                return false;
+            }
+            curr = curr.children [idx];
+        }
+        return curr.eow == true;
+    }
+
     public static void main(String[] args) {
         String words [] = {"the" , "there", "their", "any", "three", "a"};
 
@@ -33,6 +49,10 @@ public class CreatingATries {
         for (int i = 0; i < words.length; i++){
             insert(words[i]);
         }
+
+        //SEARCH
+        System.out.println(search("there")); //true
+        System.out.println(search("thee")); // false
         
     }
 }
