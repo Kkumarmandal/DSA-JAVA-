@@ -74,14 +74,36 @@ public class BfsAndDfs {
             }
         }
     }
+    
+    // has Path ?
+    public static boolean hasPath (ArrayList <Edge> [] graph, int src, int dest, boolean visit []){
+        if (src == dest) {
+            return true;
+        }
+        visit [src] = true;
+
+        for (int i = 0; i < graph [src].size(); i++){
+            Edge e = graph [src].get(i);
+            if (! visit [e.dest] && hasPath(graph, e.dest, dest, visit)) {
+                return true;
+            }
+        }
+        return false;
+    }
     public static void main(String[] args) {
         int v = 7;
         ArrayList <Edge> graph [] = new ArrayList[v];
 
         createGraph(graph);
-        //bfs(graph);
 
-        dfs(graph, 0, new boolean[v]);
+        bfs(graph); //0 1 2 3 4 5 6
+        System.out.println();
+        dfs(graph, 0, new boolean[v]); //0 1 3 4 2 5 6
+        System.out.println();
+
+        System.out.println(hasPath(graph, 0, 7, new boolean[v])); //true
+
+
         
     }
 }
