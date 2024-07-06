@@ -1,5 +1,5 @@
 public class MatrixChainMultiplication {
-    public static int mcm (int arr [] , int i , int j){
+    public static int mcmrecurss (int arr [] , int i , int j){ // Recurssion Method
         // base case
         if (i == j){
             return 0;
@@ -25,6 +25,6 @@ public class MatrixChainMultiplication {
         int arr [] = {1, 2, 3, 4, 3};
         int n = arr.length;
 
-        System.out.println(mcm(arr, 1, n-1));
+        System.out.println(mcmrecurss (arr, 1, n-1));
     }
 }
