@@ -7,8 +7,8 @@ public class MatrixChainMultiplication {
 
         int minCost = Integer.MAX_VALUE;
         for (int k = i; k <= j-1; k++){
-            int cost1 = mcm(arr, i, k); // Ai .. Ak => arr [i-1] * arr [k]
-            int cost2 = mcm(arr, k+1, j); // A i+1 .. Aj => arr [K] * arr [j]
+            int cost1 = mcmrecurss(arr, i, k); // Ai .. Ak => arr [i-1] * arr [k]
+            int cost2 = mcmrecurss(arr, k+1, j); // A i+1 .. Aj => arr [K] * arr [j]
             // resustant size a*b*d
             int cost3 = arr [i-1] * arr [k] * arr [j];
             int finalCaost = cost1 + cost2 + cost3 ;
